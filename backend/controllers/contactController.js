@@ -1,5 +1,5 @@
 import asyncHandler from "express-async-handler";
-import Contact from "../modal/contactModal.js";
+import Contact from "../modal/contactModel.js";
 
 // get  contacts
 

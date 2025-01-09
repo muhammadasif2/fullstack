@@ -1,8 +1,7 @@
 import expressAsyncHandler from "express-async-handler";
-import User from "../modal/userModal.js";
+import User from "../modal/userModel.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { debug } from "console";
 
 export const loginUser = expressAsyncHandler(async (req, res) => {
   const { email, password } = req.body;

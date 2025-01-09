@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 const contactSchema = new Schema(
   {
-    user_id: {
+    createdBy: {
       type: mongoose.Schema.Types.ObjectId,
       require: true,
       ref: "User",
@@ -24,11 +24,10 @@ const contactSchema = new Schema(
       type: String,
       require: [true, "Please add contact desciption"],
     },
-
-    //   createdUser: [{ type: Schema.Types.ObjectId, ref: "User" }],
   },
   {
     timestamps: true,
   }
 );
+// in mongodb data base of Contact will be convert into plural and lowercase like contacts
 export default mongoose.model("Contact", contactSchema);
