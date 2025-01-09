@@ -13,7 +13,7 @@ const port = process.env.PORT || 5000;
 app.use(express.json());
 app.use("/api/contacts", Router);
 // app.use("/api/users", userRoute);
-// app.use(errorHandler)
+// app.use(errorHandler);
 
 app.listen(port, () => {
   console.log("server is runing on", port);
