@@ -45,6 +45,6 @@ app.use("/", (req, res) => {
   res.send("Fullstack Web App");
 });
 // app.use("/api/users", userRoute);
-
+app.listen("5000", console.log("server is running on 5000"));
 // Export app for Vercel
 export default app;
