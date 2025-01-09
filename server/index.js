@@ -44,6 +44,13 @@ app.use("/api/contacts", Router);
 app.use("/", (req, res) => {
   res.send("Fullstack Web App");
 });
+// Global error handler
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res
+    .status(500)
+    .json({ message: "Internal Server Error", error: err.message });
+});
 // app.use("/api/users", userRoute);
 app.listen("5000", console.log("server is running on 5000"));
 // Export app for Vercel
