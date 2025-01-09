@@ -13,6 +13,9 @@ const port = process.env.PORT || 5001;
 app.use(express.static("dist"));
 app.use(express.json());
 app.use("/api/contacts", Router);
+ap.use("/", (req, res) => {
+  res.send("fullstack web app");
+});
 // app.use("/api/users", userRoute);
 // app.use(errorHandler);
 
