@@ -20,7 +20,7 @@ mongoose.connection.on("connected", () => {
 const app = express();
 env.config();
 app.use(cors());
-const port = process.env.PORT || 5001;
+const port = process.env.PORT;
 app.use(express.json());
 app.use("/api/contacts", Router);
 app.use("/", (req, res) => {
