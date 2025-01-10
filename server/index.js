@@ -1,41 +1,36 @@
 import express from "express";
 import mongoose from "mongoose";
-// import dbConnection from "./config/dbConnection.js";
 import cors from "cors";
-// import errorHandler from "./middleware/errosHandler";
 import env from "dotenv";
-import Router from "./routes/contactsRoutes.js";
-// import userRoute from "./routes/userRoutes.js";
-// dbConnection();
+import Router from "../routes/contactsRoutes.js";
+
+env.config();
+
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+// MongoDB connection
 mongoose.connect(
   `mongodb+srv://asif:asif@cluster0.y2lwxgj.mongodb.net/mycontacts-backend?retryWrites=true&w=majority`
 );
-mongoose.connection.on("error", (err) => {
-  console.log("connection failed");
+
+mongoose.connection.on("error", () => {
+  console.log("Connection to MongoDB failed");
 });
 
 mongoose.connection.on("connected", () => {
-  console.log("connected successfully with database");
+  console.log("Connected successfully to MongoDB");
 });
-const app = express();
-env.config();
-app.use(cors());
-const port = process.env.PORT;
-app.use(express.json());
+
+// Routes
 app.use("/api/contacts", Router);
-app.use("/", (req, res) => {
-  res.send("fullstack web app");
-});
-// app.use("/api/users", userRoute);
-// app.use(errorHandler);
-app.get("*", (req, res, next) => {
-  res.status(200).json({
-    message: "bad request",
-  });
-});
 app.get("/", (req, res) => {
-  res.json("FullStack app");
+  res.json({ message: "FullStack app" });
 });
-app.listen(port, () => {
-  console.log("server is runing on", port);
+
+app.all("*", (req, res) => {
+  res.status(404).json({ error: "Route not found" });
 });
+
+export default app;

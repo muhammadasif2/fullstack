@@ -1,7 +1,12 @@
 {
   "version": 2,
   "name": "property",
+  "functions": {
+    "api/server.js": {
+      "runtime": "nodejs18.x"
+    }
+  },
   "routes": [
-    { "src": "/(.*)", "dest": "/index.js" }
+    { "src": "/(.*)", "dest": "api/server.js" }
   ]
 }
