@@ -1,11 +1,22 @@
 import express from "express";
-import dbConnection from "./config/dbConnection.js";
+import mongoose from "mongoose";
+// import dbConnection from "./config/dbConnection.js";
 import cors from "cors";
 // import errorHandler from "./middleware/errosHandler";
 import env from "dotenv";
 import Router from "./routes/contactsRoutes.js";
 // import userRoute from "./routes/userRoutes.js";
-dbConnection();
+// dbConnection();
+mongoose.connect(
+  `mongodb+srv://asif:asif@cluster0.y2lwxgj.mongodb.net/mycontacts-backend?retryWrites=true&w=majority`
+);
+mongoose.connection.on("error", (err) => {
+  console.log("connection failed");
+});
+
+mongoose.connection.on("connected", () => {
+  console.log("connected successfully with database");
+});
 const app = express();
 env.config();
 app.use(cors());
