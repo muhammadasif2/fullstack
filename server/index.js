@@ -2,7 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import env from "dotenv";
-import Router from "../routes/contactsRoutes.js";
+import Router from "./routes/contactsRoutes.js";
 
 env.config();
 
