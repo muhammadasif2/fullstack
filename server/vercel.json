@@ -3,7 +3,7 @@
   "name": "property",
   "functions": {
     "api/server.js": {
-      "runtime": "nodejs21.x"
+      "runtime": "nodejs18.x"
     }
   },
   "routes": [
