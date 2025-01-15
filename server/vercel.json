@@ -1,12 +1,9 @@
 {
   "version": 2,
-  "name": "property",
-  "functions": {
-    "api/server.js": {
-      "runtime": "nodejs18.x"
+  "builds": [
+    {
+      "src": "api/**/*.js",
+      "use": "@vercel/node"
     }
-  },
-  "routes": [
-    { "src": "/(.*)", "dest": "api/server.js" }
   ]
 }
