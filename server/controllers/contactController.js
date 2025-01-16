@@ -34,10 +34,10 @@ export const getContact = asyncHandler(async (req, res) => {
 
 export const createContact = asyncHandler(async (req, res) => {
   const { title, email, description, password } = req.body;
-  if (!title || !email || !description) {
-    res.status(400);
-    throw new Error("all fields are required");
-  }
+  // if (!title || !email || !description) {
+  //   res.status(400);
+  //   throw new Error("all fields are required");
+  // }
   const contact = await Contact.create({ title, email, password, description });
   try {
     const responseData = {

@@ -1,3 +1,12 @@
-#after getting commit please update src/condig.js file and package.json
-All Staging or Development codes should be pushed to this branch for QA testing
-QA testing# web-automation
+- Mern Stack web application
+
+* This is mern stack web application for contacts
+
+* What's being used?
+
+- Express server
+- MongoDb
+- npm install http-proxy-middleware middleware
+- and desing Ui library
+- Zustand for state management
+- Axios json request library
