@@ -1,8 +1,8 @@
-- Mern Stack web application
+## Mern Stack web application
 
-* This is mern stack web application for contacts
+## This is mern stack web application for contacts
 
-* What's being used?
+## What's being used?
 
 - Express server
 - MongoDb
