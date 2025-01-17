@@ -11,7 +11,7 @@ export default function Navbar() {
       </Link>
       <Link href="/contact">Contact</Link>
       <Link href="/counter">Counter</Link>
-      <Link href="/posts">Posts</Link>
+      <Link href="/create-post">Posts</Link>
     </nav>
   );
 }

@@ -1,75 +1,35 @@
-"use client";
+// Posts.js
 
-import { Form, Input, Button, message } from "antd";
-import axios from "axios";
-import { useState } from "react";
+import EditableTable from "../components/editableTable/post-table";
 
-const CreateForm = () => {
-  const [form] = Form.useForm();
-  const [posts, setPosts] = useState();
-  // Handle form submission
-  const onFinish = async (values) => {
-    console.log("values", values);
-    try {
-      // Replace with your API endpoint
+export default async function Posts() {
+  try {
+    // Fetch data server-side
+    const res = await fetch("http://localhost:5001/api/contacts", {
+      cache: "no-store", // Ensures SSR with fresh data on each request
+    });
 
-      const response = await axios.post("http://localhost:5001/api/contacts/", {
-        title: values.title,
-        email: "asifbsit@gmail.com",
-        description: values.description,
-        _id: "67894176d5a4ef2873b6ae26",
-        createdAt: "2025-01-16T17:27:18.231Z",
-        updatedAt: "2025-01-16T17:27:18.231Z",
-        __v: 0,
-      });
-
-      message.success("Data created successfully!");
-      console.log("Response:", response.data);
-
-      // Reset the form after successful submission
-      form.resetFields();
-    } catch (error) {
-      console.error("Error:", error);
-      message.error("Failed to create data.");
+    if (!res.ok) {
+      throw new Error(`Failed to fetch data: ${res.status}`);
     }
-  };
 
-  return (
-    <div style={{ maxWidth: "500px", margin: "0 auto", padding: "20px" }}>
-      <h1>Create Contact</h1>
-      <Form
-        form={form}
-        layout="vertical"
-        onFinish={onFinish}
-        autoComplete="off"
-      >
-        <Form.Item
-          label="Name"
-          name="title" // Changed to match expected field name
-          // rules={[{ required: true, message: "Please enter your name" }]}
-        >
-          <Input placeholder="Enter your name" />
-        </Form.Item>
+    const data = await res.json();
 
-        <Form.Item
-          label="Email"
-          name="description" // Changed to match expected field name
-          // rules={[
-          //   { required: true, message: "Please enter your email" },
-          //   { type: "email", message: "Please enter a valid email" },
-          // ]}
-        >
-          <Input placeholder="Enter your email" />
-        </Form.Item>
+    const tableData = data?.data?.map((item) => ({
+      _id: item._id,
+      title: item.title,
+      email: item.email,
+      createdAt: item.createdAt,
+      updatedAt: item.updatedAt,
+    }));
 
-        <Form.Item>
-          <Button type="primary" htmlType="submit">
-            Submit
-          </Button>
-        </Form.Item>
-      </Form>
-    </div>
-  );
-};
-
-export default CreateForm;
+    return (
+      <div>
+        <EditableTable data={tableData} />
+      </div>
+    );
+  } catch (error) {
+    console.error("Error fetching posts:", error);
+    return <p>Failed to load data.</p>;
+  }
+}
