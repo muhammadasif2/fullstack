@@ -2,8 +2,13 @@
 
 import React from "react";
 import { Button, Table } from "antd";
-
+import { useRouter } from "next/router";
 const EditableTable = ({ data }) => {
+  const router = useRouter();
+  const updateHandler = (item) => {
+    console.log("item", item);
+    router.push("/create-post");
+  };
   const columns = [
     {
       title: "ID",
@@ -41,7 +46,7 @@ const EditableTable = ({ data }) => {
         <Button
           // loading={loader ? true.toString() : false.toString()}
           className="border-0 p-0 bg-transparent shadow-none text-hover-primary"
-          //   onClick={() => editInventoryHandler(item)}
+          onClick={() => updateHandler(item)}
         >
           Update
         </Button>

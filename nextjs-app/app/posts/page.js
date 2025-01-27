@@ -1,6 +1,6 @@
 // Posts.js
 
-import EditableTable from "../components/editableTable/post-table";
+import PostView from "../post-view/page";
 
 export default async function Posts() {
   try {
@@ -25,7 +25,7 @@ export default async function Posts() {
 
     return (
       <div>
-        <EditableTable data={tableData} />
+        <PostView data={tableData} />
       </div>
     );
   } catch (error) {
